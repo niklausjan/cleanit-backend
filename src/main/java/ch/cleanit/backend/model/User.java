@@ -18,11 +18,12 @@ public class User {
     @Builder.Default
     private final List<Role> roles = new ArrayList<>();
 
+    @NonNull
     private String firstName;
 
+    @NonNull
     private String lastName;
 
-    private String mobile;
-
+    @NonNull
     private String mail;
 }

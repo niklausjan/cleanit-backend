@@ -40,7 +40,6 @@ public class DataInitializer {
         User customer1 = User.builder()
                 .firstName("Lara")
                 .lastName("Linda")
-                .mobile("123456789")
                 .mail("laralinda@bluewin.ch")
                 .build();
         customer1.getRoles().add(Role.CUSTOMER);
@@ -48,7 +47,6 @@ public class DataInitializer {
         User customer2 = User.builder()
                 .firstName("Thomas")
                 .lastName("Tur")
-                .mobile("2385942")
                 .mail("turtho@gmail.com")
                 .build();
         customer2.getRoles().add(Role.CUSTOMER);
@@ -56,7 +54,6 @@ public class DataInitializer {
         employee = User.builder()
                 .firstName("Sebastian")
                 .lastName("Sauber")
-                .mobile("0773332211")
                 .mail("sebasa@clean.ch")
                 .build();
         employee.getRoles().add(Role.EMPLOYEE);
@@ -64,7 +61,6 @@ public class DataInitializer {
         manager = User.builder()
                 .firstName("Mastro")
                 .lastName("Lindo")
-                .mobile("123456789")
                 .mail("mastrolindo@clean.ch")
                 .build();
         manager.getRoles().add(Role.MANAGER);

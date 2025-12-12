@@ -26,6 +26,13 @@ public class UserRepository {
                 .orElse(null);
     }
 
+    public User findByEmail(String email) {
+        return users.stream()
+                .filter(u -> u.getMail().equals(email))
+                .findFirst()
+                .orElse(null);
+    }
+
     public List<User> findAll() {
         return users;
     }

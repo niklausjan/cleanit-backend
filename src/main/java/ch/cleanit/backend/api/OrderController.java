@@ -5,16 +5,13 @@ import ch.cleanit.backend.exception.NoSuchCustomerFoundException;
 import ch.cleanit.backend.exception.NoSuchShopFoundException;
 import ch.cleanit.backend.model.Order;
 import ch.cleanit.backend.service.OrderService;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/orders")
-@CrossOrigin(origins = "*")
 public class OrderController {
 
     private final OrderService orderService;
@@ -34,7 +31,8 @@ public class OrderController {
     }
 
     @GetMapping
-    public List<Order> all() {
-        return orderService.getAll();
+    public ResponseEntity<List<Order>> all() {
+        List<Order> orders = orderService.getAll();
+        return ResponseEntity.ok(orders);
     }
 }
