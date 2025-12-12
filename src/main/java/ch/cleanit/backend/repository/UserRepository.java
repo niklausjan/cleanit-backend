@@ -1,5 +1,6 @@
 package ch.cleanit.backend.repository;
 
+import ch.cleanit.backend.model.Role;
 import ch.cleanit.backend.model.User;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -33,7 +34,9 @@ public class UserRepository {
                 .orElse(null);
     }
 
-    public List<User> findAll() {
-        return users;
+    public List<User> findAllCustomers() {
+        return users.stream()
+                .filter(u -> u.getRoles().contains(Role.CUSTOMER))
+                .toList();
     }
 }
