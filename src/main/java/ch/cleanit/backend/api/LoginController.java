@@ -22,7 +22,7 @@ public class LoginController {
 
     @PostMapping()
     public ResponseEntity<User> login(@RequestBody LoginDTO loginDTO) {
-        String email = loginDTO.email();
+        String email = loginDTO.email().toLowerCase();
         User user = userRepository.findByEmail(email);
         if (user != null) {
             return ResponseEntity.ok(user);

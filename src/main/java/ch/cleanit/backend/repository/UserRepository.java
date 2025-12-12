@@ -29,7 +29,7 @@ public class UserRepository {
 
     public User findByEmail(String email) {
         return users.stream()
-                .filter(u -> u.getMail().equals(email))
+                .filter(u -> u.getMail().toLowerCase().equals(email))
                 .findFirst()
                 .orElse(null);
     }
