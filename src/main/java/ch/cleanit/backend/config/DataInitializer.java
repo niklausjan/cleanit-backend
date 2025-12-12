@@ -18,7 +18,8 @@ public class DataInitializer {
     private final OrderRepository orderRepository;
 
     private User customer;
-    private User employee;
+    private User employeeBS;
+    private User employeeZH;
     private User manager;
     private Shop shop2;
 
@@ -51,12 +52,19 @@ public class DataInitializer {
                 .build();
         customer2.getRoles().add(Role.CUSTOMER);
 
-        employee = User.builder()
+        employeeBS = User.builder()
                 .firstName("Sebastian")
                 .lastName("Sauber")
                 .mail("sebasa@clean.ch")
                 .build();
-        employee.getRoles().add(Role.EMPLOYEE);
+        employeeBS.getRoles().add(Role.EMPLOYEE);
+
+        employeeZH = User.builder()
+                .firstName("Zhulu")
+                .lastName("Zuber")
+                .mail("zhulu@clean.ch")
+                .build();
+        employeeZH.getRoles().add(Role.EMPLOYEE);
 
         manager = User.builder()
                 .firstName("Mastro")
@@ -68,12 +76,13 @@ public class DataInitializer {
 
         System.out.println(customer1);
         System.out.println(customer2);
-        System.out.println(employee);
+        System.out.println(employeeBS);
+        System.out.println(employeeZH);
         System.out.println(manager);
 
         customer = userRepository.save(customer1);
         userRepository.save(customer2);
-        employee = userRepository.save(employee);
+        employeeBS = userRepository.save(employeeBS);
         manager = userRepository.save(manager);
     }
 
@@ -82,19 +91,27 @@ public class DataInitializer {
                 .name("CleanIt Zürich")
                 .location(new Address("Hauptstrasse 1", "8000", "Zürich"))
                 .build();
+        shop1.getEmployees().add(employeeZH);
 
         shop2 = Shop.builder()
                 .name("CleanIt Basel")
                 .location(new Address("Elisabethenanlage 1", "4000", "Basel"))
                 .build();
         shop2.getManagers().add(manager);
-        shop2.getEmployees().add(employee);
+        shop2.getEmployees().add(employeeBS);
+
+        Shop shop3 = Shop.builder()
+                .name("CleanIt Aarau")
+                .location(new Address("Hauptstrasse 1", "5000", "Aarau"))
+                .build();
 
         System.out.println(shop1);
         System.out.println(shop2);
+        System.out.println(shop3);
 
         shopRepository.save(shop1);
         shopRepository.save(shop2);
+        shopRepository.save(shop3);
     }
 
     private void addOrders() {
