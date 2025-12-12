@@ -83,6 +83,7 @@ public class DataInitializer {
         customer = userRepository.save(customer1);
         userRepository.save(customer2);
         employeeBS = userRepository.save(employeeBS);
+        employeeZH = userRepository.save(employeeZH);
         manager = userRepository.save(manager);
     }
 
