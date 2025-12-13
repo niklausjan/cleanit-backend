@@ -1,11 +1,10 @@
 package ch.cleanit.backend.api;
 
+import ch.cleanit.backend.api.dto.CreateCustomerDTO;
 import ch.cleanit.backend.model.User;
 import ch.cleanit.backend.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +22,11 @@ public class UserController {
     public ResponseEntity<List<User>> all() {
         List<User> orders = userService.getAllCustomers();
         return ResponseEntity.ok(orders);
+    }
+
+    @PostMapping("/customers")
+    public ResponseEntity<User> createCustomer(@RequestBody CreateCustomerDTO request) {
+        User customer = userService.createCustomer(request.firstName(), request.lastName(), request.mail());
+        return ResponseEntity.ok(customer);
     }
 }
