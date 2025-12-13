@@ -1,8 +1,6 @@
 package ch.cleanit.backend.repository;
 
-import ch.cleanit.backend.exception.NoSuchShopFoundException;
 import ch.cleanit.backend.model.Shop;
-import ch.cleanit.backend.model.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -20,7 +18,8 @@ public class ShopRepository {
 
     public Shop findById(UUID id) {
         return shops.stream()
-                .filter(shop -> shop.getId().equals(id)).findFirst().orElseThrow(() -> new NoSuchShopFoundException("the shop with the id=" + id + " was not found"));
+                .filter(shop -> shop.getId().equals(id)).findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("the shop with the id=" + id + " was not found"));
     }
 
     public Shop save(Shop shop) {

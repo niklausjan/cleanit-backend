@@ -24,7 +24,7 @@ public class OrderService {
         this.shopRepository = shopRepository;
     }
 
-    public Order createOrder(UUID customerId, UUID shopId) {
+    public Order createOrder(UUID customerId, UUID shopId) throws IllegalArgumentException {
         User customer = userRepository.findById(customerId);
         Shop shop = shopRepository.findById(shopId);
 

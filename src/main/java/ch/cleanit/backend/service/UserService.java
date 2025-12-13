@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ch.cleanit.backend.service.ValidationHelper.requireNonEmpty;
+
 @Service
 public class UserService {
     private final UserRepository userRepository;
@@ -20,7 +22,11 @@ public class UserService {
         return userRepository.findAllCustomers();
     }
 
-    public User createCustomer(String firstName, String lastName, String mail) {
+    public User createCustomer(String firstName, String lastName, String mail) throws IllegalArgumentException {
+        requireNonEmpty(firstName, "firstname");
+        requireNonEmpty(lastName, "lastname");
+        requireNonEmpty(mail, "mail");
+
         List<Role> roles = new ArrayList<>();
         roles.add(Role.CUSTOMER);
         User newUser = User.builder()

@@ -21,7 +21,7 @@ public class LoginController {
     }
 
     @PostMapping()
-    public ResponseEntity<User> login(@RequestBody LoginDTO loginDTO) {
+    public ResponseEntity<User> login(@RequestBody LoginDTO loginDTO) throws IllegalArgumentException {
         String email = loginDTO.email().toLowerCase();
         User user = userRepository.findByEmail(email);
         if (user != null) {

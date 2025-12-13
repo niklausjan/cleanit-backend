@@ -24,14 +24,14 @@ public class UserRepository {
         return users.stream()
                 .filter(u -> u.getId().equals(id))
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(() -> new IllegalArgumentException("the user with id=" + id + " was not found"));
     }
 
     public User findByEmail(String email) {
         return users.stream()
                 .filter(u -> u.getMail().toLowerCase().equals(email))
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(() -> new IllegalArgumentException("the user with email=" + email + " was not found"));
     }
 
     public List<User> findAllCustomers() {
