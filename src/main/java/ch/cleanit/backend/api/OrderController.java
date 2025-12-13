@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -31,8 +32,14 @@ public class OrderController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Order>> getAll() {
-        List<Order> orders = orderService.getAll();
-        return ResponseEntity.ok(orders);
+    public ResponseEntity<List<Order>> getAllByShop(@RequestParam String shopId) {
+        try {
+            UUID id = UUID.fromString(shopId);
+            List<Order> orders = orderService.getAllByShop(id);
+            return ResponseEntity.ok(orders);
+        } catch (IllegalArgumentException e) {
+            List<Order> orders = orderService.getAll();
+            return ResponseEntity.ok(orders);
+        }
     }
 }

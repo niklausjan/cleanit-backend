@@ -3,9 +3,8 @@ package ch.cleanit.backend.repository;
 import ch.cleanit.backend.model.Order;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.sql.Array;
+import java.util.*;
 
 @Repository
 public class OrderRepository {
@@ -21,10 +20,8 @@ public class OrderRepository {
         return order;
     }
 
-    public Order findById(UUID id) {
+    public List<Order> findAllByShopId(UUID shopId) {
         return orders.stream()
-                .filter(o -> o.getId().equals(id))
-                .findFirst()
-                .orElse(null);
+                .filter(o -> o.getShop().getId().equals(shopId)).toList();
     }
 }

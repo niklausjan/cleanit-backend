@@ -39,4 +39,8 @@ public class OrderService {
     public List<Order> getAll() {
         return orderRepository.findAll();
     }
+
+    public List<Order> getAllByShop(UUID shopId) {
+        return orderRepository.findAllByShopId(shopId);
+    }
 }
